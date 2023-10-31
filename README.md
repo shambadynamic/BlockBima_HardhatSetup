@@ -6,4 +6,4 @@ The application is available as [Blockbima](https://app.blockbima.com/) for **[X
 
 ### Demo Video
 
-To get a brief demo of the working, you can watch the walkthrough video showcasing the interaction with the application.
+To get a brief demo of the working, you can watch the [walkthrough video](https://youtu.be/0IjRl9w67KI) showcasing the interaction with the application.
