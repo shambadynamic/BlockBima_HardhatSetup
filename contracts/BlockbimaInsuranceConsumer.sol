@@ -28,7 +28,7 @@ contract BlockbimaInsuranceConsumer is ShambaGeoConsumer {
     ) payable ShambaGeoConsumer(_chainId) {
         // ensure that the contract is fully funded (payout + 1% commission)
         require(msg.value >= _totalValue);
-        
+
         request_IPFS_CID = requestIpfsCid;
         geostatsThreshold = _geostatsThreshold;
         insurer = payable(msg.sender);

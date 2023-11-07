@@ -31,7 +31,6 @@ contract BlockbimaInsuranceProvider {
         int256 _geostatsThreshold,
         string memory requestIpfsCid
     ) public payable returns (address) {
-
         // payout + 1% commission
         uint256 _totalValue = _payoutValue + (_payoutValue / 100);
 
@@ -40,7 +39,14 @@ contract BlockbimaInsuranceProvider {
 
         BlockbimaInsuranceConsumer i = (new BlockbimaInsuranceConsumer){
             value: _totalValue
-        }(_client, _payoutValue, _totalValue, requestIpfsCid, _geostatsThreshold, chain_Id);
+        }(
+            _client,
+            _payoutValue,
+            _totalValue,
+            requestIpfsCid,
+            _geostatsThreshold,
+            chain_Id
+        );
 
         insuranceContracts.push(i);
 
@@ -56,14 +62,19 @@ contract BlockbimaInsuranceProvider {
      * @notice this function can only be called by Shamba (can be contacted via email at info@shamba.network)
      */
     function whitelistInsuranceContract(address _contract) external {
-        BlockbimaInsuranceConsumer(_contract).addAddressToWhitelist(address(this));
+        BlockbimaInsuranceConsumer(_contract).addAddressToWhitelist(
+            address(this)
+        );
     }
 
     /**
      * @dev checks whether the insurance provider is whitelisted or not, for a given contract address
      */
-    function isInsuranceContractWhitelisted(address _contract) external view returns (bool) {
-        return BlockbimaInsuranceConsumer(_contract).isWhitelisted(address(this));
+    function isInsuranceContractWhitelisted(
+        address _contract
+    ) external view returns (bool) {
+        return
+            BlockbimaInsuranceConsumer(_contract).isWhitelisted(address(this));
     }
 
     /**
@@ -86,7 +97,9 @@ contract BlockbimaInsuranceProvider {
      */
     function sendContractRequestToShambaOracle(address _contract) external {
         require(BlockbimaInsuranceConsumer(_contract).isContractActive());
-        BlockbimaInsuranceConsumer(_contract).requestGeostatsData(BlockbimaInsuranceConsumer(_contract).request_IPFS_CID());
+        BlockbimaInsuranceConsumer(_contract).requestGeostatsData(
+            BlockbimaInsuranceConsumer(_contract).request_IPFS_CID()
+        );
     }
 
     /**
