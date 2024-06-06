@@ -36,6 +36,11 @@ module.exports = {
   },
   defaultNetwork: "rippleEvmSidechain",
   networks: {
+    mumbai: {
+      url: process.env.ALCHEMY_POLYGON_URL,
+      accounts: [process.env.ACCOUNT_PRIVATE_KEY],
+      chainId: 80001,
+    },
     rippleEvmSidechain: {
       url: process.env.RIPPLE_EVM_SIDECHAIN_RPC,
       accounts: [process.env.ACCOUNT_PRIVATE_KEY],
@@ -44,6 +49,7 @@ module.exports = {
   },
   etherscan: {
     apiKey: {
+      polygonMumbai: process.env.POLYGONSCAN_API_KEY,
       rippleEvmSidechain: "abc"
     },
     customChains: [
